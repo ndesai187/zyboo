@@ -1,3 +1,8 @@
-from django.db import models
+from django.contrib.gis.db import models
 
-# Create your models here.
+class HappyPubs(models.Model):
+    """
+    Model for a registered locations
+    """
+    name = models.CharField(max_length=200)
+    location = models.PointField()
