@@ -48,6 +48,9 @@ class PubTest(TestCase):
         print(pub.location)
         self.assertEqual(only_venue.name, 'Petty Pub')
 
+        #Check String representation
+        self.assertEqual(only_venue.__str__(),'Petty Pub')
+
 class EventTest(TestCase):
     def test_create_venue(self):
 
@@ -75,6 +78,10 @@ class EventTest(TestCase):
         print("This is Event start time : " + str(only_event.fromDatetime))
         self.assertEqual(only_event.name, 'Happy Hours')
         self.assertEqual(only_event.pubName.name, 'Petty Pub')
+
+        #Check String representation
+        self.assertEqual(only_event.__str__(),'Happy Hours - Petty Pub')
+
 
         #exclude = ('naming','location')
         #abstract = False
