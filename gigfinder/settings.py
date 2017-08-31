@@ -81,7 +81,7 @@ DATABASES = {
         'ENGINE': 'django.contrib.gis.db.backends.postgis',
         'NAME': 'gigfinder',
         'USER': 'giguser',
-        'PASSWORD': 'giguser',
+        'PASSWORD': 'giguser1',
     }
 }
 
