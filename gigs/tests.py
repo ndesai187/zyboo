@@ -1,9 +1,11 @@
-from django.test import TestCase
+from django.test import TestCase, RequestFactory
 from gigs.models import HappyPubs, PubEvent
 from factory.fuzzy import BaseFuzzyAttribute
 from django.contrib.gis.geos import Point
-import factory.django, random
 from django.utils import timezone
+from django.core.urlresolvers import reverse
+from gigs.views import LookupView
+import factory.django, random
 
 class FuzzyPoint(BaseFuzzyAttribute):
     def fuzz(self):
@@ -82,6 +84,19 @@ class EventTest(TestCase):
         #Check String representation
         self.assertEqual(only_event.__str__(),'Happy Hours - Petty Pub')
 
+
+class LookupViewTest(TestCase):
+    """
+    Test lookup view
+    """
+    def setUp(self):
+        self.factory = RequestFactory()
+
+    def test_get(self):
+        request = self.factory.get(reverse('lookup'))
+        response = LookupView.as_view()(request)
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed('gigs/lookup.html')
 
         #exclude = ('naming','location')
         #abstract = False
