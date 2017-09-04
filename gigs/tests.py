@@ -93,19 +93,31 @@ class LookupViewTest(TestCase):
         self.factory = RequestFactory()
 
     def test_get(self):
-        request = self.factory.get(reverse('lookup'))
+        p1 = HappyPubFactory(name='Pub1')
+        p2 = HappyPubFactory(name='Pub2')
+        p3 = HappyPubFactory(name='Pub3')
+        p4 = HappyPubFactory(name='Pub4')
+        p5 = HappyPubFactory(name='Pub5')
+        p6 = HappyPubFactory(name='Pub6')
+
+        e1 = PubEventFactory(name='Event1',pubName=p1)
+        e2 = PubEventFactory(name='Event2',pubName=p2)
+        e3 = PubEventFactory(name='Event3',pubName=p3)
+        e4 = PubEventFactory(name='Event4',pubName=p4)
+        e5 = PubEventFactory(name='Event5',pubName=p5)
+        e6 = PubEventFactory(name='Event6',pubName=p6)
+
+        # Set parameters
+        lat = 52.3749159
+        lon = 1.1067473
+        # Put together request
+
+        data = {
+            'latitude': lat,
+            'longitude': lon
+        }
+
+        request = self.factory.post(reverse('lookup'),data)
         response = LookupView.as_view()(request)
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed('gigs/lookup.html')
-
-        #exclude = ('naming','location')
-        #abstract = False
-        #inline_args = ('name', 'location')#model.naming = 'Petty Pub'
-        #model.location = FuzzyPoint()
-        #naming = 'Petty pub'
-        #location = FuzzyPoint()
-        #class Params:
-        #    id = factory.Sequence(lambda n: n)
-        #    naming = 'Petty Pub'
-        #    location = FuzzyPoint()
-        #    print("variable initialized")
+        self.assertTemplateUsed('gigs/lookupresults.html')
