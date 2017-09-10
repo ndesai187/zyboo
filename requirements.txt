@@ -1,3 +1,4 @@
+djangorestframework
 appnope==0.1.0
 decorator==4.1.2
 dj-database-url==0.4.2

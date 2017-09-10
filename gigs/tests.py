@@ -5,7 +5,11 @@ from django.contrib.gis.geos import Point
 from django.utils import timezone
 from django.core.urlresolvers import reverse
 from gigs.views import LookupView
+from rest_framework.test import APIClient
+from rest_framework import status
+
 import factory.django, random
+
 
 class FuzzyPoint(BaseFuzzyAttribute):
     def fuzz(self):
@@ -121,3 +125,10 @@ class LookupViewTest(TestCase):
         response = LookupView.as_view()(request)
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed('gigs/lookupresults.html')
+
+#class ViewPubEventApi(TestCase):
+#    """Test suite for the api views."""
+
+#    def setUp(self):
+#        """Define the test client and other test variables."""
+#        self.client = APIClient()

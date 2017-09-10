@@ -1,18 +1,20 @@
 from django.shortcuts import render_to_response, render
 from django.views.generic.edit import FormView
+from rest_framework.response import Response
 from gigs.forms import LookupForm
-from gigs.models import PubEvent
+from gigs.models import PubEvent, HappyPubs
 from django.utils import timezone
 from django.contrib.gis.geos import Point
 from django.contrib.gis.db.models.functions import Distance
-from django.template import Context, RequestContext
+from .serializers import PubEventSerializer, HappyPubsSerializer
+from rest_framework import generics
 
 
 class LookupView(FormView):
     form_class = LookupForm
 
     def get(self, request):
-        #context = {}
+        # context = {}
         # render_to_response is obsolete.
         # return render_to_response('gigs/lookup.html', context_instance=RequestContext(request))
         return render(request, 'gigs/lookup.html')
@@ -40,3 +42,25 @@ class LookupView(FormView):
         return render_to_response('gigs/lookupresults.html', {
             'events': events
         })
+
+
+class GetPubEventJson(generics.ListCreateAPIView):
+    queryset = PubEvent.objects.all()
+    serializer_class = PubEventSerializer
+
+    def list(self, request):
+        queryset = PubEvent.objects.all()
+        serialized_eve = PubEventSerializer(queryset, many=True)
+        # return HttpResponse(serialized.data, content_type="application/json")
+        return Response(serialized_eve.data)
+
+
+class GetHappyPubsJson(generics.ListCreateAPIView):
+    queryset = HappyPubs.objects.all()
+    serializer_class = HappyPubsSerializer
+
+    def list(self, request):
+        queryset = HappyPubs.objects.all()
+        serialized_pub = HappyPubsSerializer(queryset, many=True)
+        # return HttpResponse(serialized.data, content_type="application/json")
+        return Response(serialized_pub.data)
