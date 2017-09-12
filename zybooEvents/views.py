@@ -1,13 +1,18 @@
 from django.shortcuts import render_to_response, render
 from django.views.generic.edit import FormView
 from rest_framework.response import Response
-from gigs.forms import LookupForm
-from gigs.models import PubEvent, HappyPubs
+from zybooEvents.forms import LookupForm
+from zybooEvents.models import PubEvent, HappyPubs
 from django.utils import timezone
 from django.contrib.gis.geos import Point
 from django.contrib.gis.db.models.functions import Distance
 from .serializers import PubEventSerializer, HappyPubsSerializer
 from rest_framework import generics
+
+
+class WelcomeView(FormView):
+    def get(self, request):
+        return render(request, 'zybooEvents/welcome.html')
 
 
 class LookupView(FormView):
@@ -16,8 +21,8 @@ class LookupView(FormView):
     def get(self, request):
         # context = {}
         # render_to_response is obsolete.
-        # return render_to_response('gigs/lookup.html', context_instance=RequestContext(request))
-        return render(request, 'gigs/lookup.html')
+        # return render_to_response('zybooEvents/lookup.html', context_instance=RequestContext(request))
+        return render(request, 'zybooEvents/lookup.html')
 
     def form_valid(self, form):
         # Get Data
@@ -39,7 +44,7 @@ class LookupView(FormView):
 
         # Render the template
 
-        return render_to_response('gigs/lookupresults.html', {
+        return render_to_response('zybooEvents/lookupresults.html', {
             'events': events
         })
 

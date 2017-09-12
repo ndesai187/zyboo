@@ -1,10 +1,10 @@
 from django.test import TestCase, RequestFactory
-from gigs.models import HappyPubs, PubEvent
+from zybooEvents.models import HappyPubs, PubEvent
 from factory.fuzzy import BaseFuzzyAttribute
 from django.contrib.gis.geos import Point
 from django.utils import timezone
 from django.core.urlresolvers import reverse
-from gigs.views import LookupView
+from zybooEvents.views import LookupView
 from rest_framework.test import APIClient
 from rest_framework import status
 
@@ -124,7 +124,7 @@ class LookupViewTest(TestCase):
         request = self.factory.post(reverse('lookup'),data)
         response = LookupView.as_view()(request)
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed('gigs/lookupresults.html')
+        self.assertTemplateUsed('zybooEvents/lookupresults.html')
 
 #class ViewPubEventApi(TestCase):
 #    """Test suite for the api views."""

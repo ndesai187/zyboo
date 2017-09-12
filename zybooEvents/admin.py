@@ -1,5 +1,5 @@
 from django.contrib import admin
-from gigs.models import HappyPubs, PubEvent
+from zybooEvents.models import HappyPubs, PubEvent
 from django.forms import ModelForm
 from floppyforms.gis import PointWidget, BaseGMapWidget
 

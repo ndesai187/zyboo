@@ -1,4 +1,4 @@
-"""gigfinder URL Configuration
+"""zyboo URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/1.11/topics/http/urls/
@@ -15,10 +15,11 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
+from zybooEvents import views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
 
-    #Gig URLs
-    url(r'', include('gigs.urls')),
+    # zyboo URLs
+    url(r'', include('zybooEvents.urls')),
 ]

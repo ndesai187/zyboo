@@ -30,7 +30,7 @@ class Migration(migrations.Migration):
                 ('name', models.CharField(max_length=200)),
                 ('fromDatetime', models.DateTimeField()),
                 ('toDatetime', models.DateTimeField()),
-                ('pubName', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='gigs.HappyPubs')),
+                ('pubName', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='zybooEvents.HappyPubs')),
             ],
         ),
     ]
