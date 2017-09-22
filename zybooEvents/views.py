@@ -2,12 +2,13 @@ from django.shortcuts import render_to_response, render
 from django.views.generic.edit import FormView
 from rest_framework.response import Response
 from zybooEvents.forms import LookupForm
-from zybooEvents.models import PubEvent, HappyPubs
+from zybooEvents.models import PubEvent, HappyPubs, RegisteredPubs, Events
 from django.utils import timezone
 from django.contrib.gis.geos import Point
 from django.contrib.gis.db.models.functions import Distance
-from .serializers import PubEventSerializer, HappyPubsSerializer
-from rest_framework import generics
+from .serializers import PubEventSerializer, HappyPubsSerializer, \
+    EventSerializer, RegPubsSerializer, TestSerializer
+from rest_framework import generics, views
 
 
 class WelcomeView(FormView):
@@ -69,3 +70,38 @@ class GetHappyPubsJson(generics.ListCreateAPIView):
         serialized_pub = HappyPubsSerializer(queryset, many=True)
         # return HttpResponse(serialized.data, content_type="application/json")
         return Response(serialized_pub.data)
+
+
+class GetEventsJson(generics.ListCreateAPIView):
+    queryset = Events.objects.all()
+    serializer_class = EventSerializer
+
+    def list(self, request):
+        queryset = Events.objects.all()
+        serialized_eve = EventSerializer(queryset, many=True)
+        # return HttpResponse(serialized.data, content_type="application/json")
+        return Response(serialized_eve.data)
+
+
+class GetRegPubsJson(generics.ListCreateAPIView):
+    queryset = RegisteredPubs.objects.all()
+    serializer_class = RegPubsSerializer
+
+    def list(self, request):
+        queryset = RegisteredPubs.objects.all()
+        serialized_pub = RegPubsSerializer(queryset, many=True)
+        # return HttpResponse(serialized.data, content_type="application/json")
+        return Response(serialized_pub.data)
+
+
+class GetQueryParam(views.APIView):
+    def get(self, request):
+        lat = request.GET.get('lat')
+        long = request.GET.get('long')
+        lat1 = int(lat) + 5
+        long1 = int(long) + 30
+        # temp = TempClass(lat=lat, long=long, *args, **kwargs)
+        temp = [{"lat": lat, "long": long}, {"lat": lat1, "long": long1}]
+        serialized_temp = TestSerializer(temp, many=True)
+        # return HttpResponse(serialized.data, content_type="application/json")
+        return Response(serialized_temp.data)
