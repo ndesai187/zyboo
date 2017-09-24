@@ -5,6 +5,7 @@ from zybooEvents.forms import LookupForm
 from zybooEvents.models import PubEvent, HappyPubs, RegisteredPubs, Events
 from django.utils import timezone
 from django.contrib.gis.geos import Point
+from django.contrib.gis.geoip2 import GeoIP2
 from django.contrib.gis.db.models.functions import Distance
 from .serializers import PubEventSerializer, HappyPubsSerializer, \
     EventSerializer, RegPubsSerializer, TestSerializer
@@ -95,13 +96,28 @@ class GetRegPubsJson(generics.ListCreateAPIView):
 
 
 class GetQueryParam(views.APIView):
+    def get_client_ip(self, request):
+        x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+        if x_forwarded_for:
+            ip = x_forwarded_for.split(',')[0]
+        else:
+            ip = request.META.get('REMOTE_ADDR')
+        return ip
+
+    def get_country(self,request):
+        g = GeoIP2()
+        country_code = g.country_code(self.get_client_ip(request))
+        lat, long = g.lat_lon('google.com')
+        return ">>country code is : " + country_code + " >>latitude is : " + str(lat) + " >>longitude is : " + str(long)
+
     def get(self, request):
         lat = request.GET.get('lat')
         long = request.GET.get('long')
+        ipaddr = self.get_country(request)
         lat1 = int(lat) + 5
         long1 = int(long) + 30
         # temp = TempClass(lat=lat, long=long, *args, **kwargs)
-        temp = [{"lat": lat, "long": long}, {"lat": lat1, "long": long1}]
+        temp = [{"lat": lat, "long": long, "ip": ipaddr}, {"lat": lat1, "long": long1, "ip": ipaddr}]
         serialized_temp = TestSerializer(temp, many=True)
         # return HttpResponse(serialized.data, content_type="application/json")
         return Response(serialized_temp.data)

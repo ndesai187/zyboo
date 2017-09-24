@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/gigfinder.iml" filepath="$PROJECT_DIR$/.idea/gigfinder.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/zyboo.iml" filepath="$PROJECT_DIR$/.idea/zyboo.iml" />
     </modules>
   </component>
 </project>

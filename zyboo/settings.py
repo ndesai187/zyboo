@@ -119,8 +119,10 @@ USE_L10N = True
 
 USE_TZ = True
 
+GEOIP_PATH = BASE_DIR + '/geoip'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
+STATIC_ROOT = "staticfiles"
 STATIC_URL = '/static/'

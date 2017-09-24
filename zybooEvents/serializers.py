@@ -51,3 +51,4 @@ class TestSerializer(serializers.Serializer):
 
     lat = serializers.IntegerField()
     long = serializers.IntegerField()
+    ip = serializers.CharField()
