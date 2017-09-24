@@ -120,7 +120,9 @@ USE_L10N = True
 USE_TZ = True
 
 GEOIP_PATH = BASE_DIR + '/geoip'
-GDAL_LIBRARY_PATH = '/.heroku/vendor/lib/libgdal.so'
+
+
+GDAL_LIBRARY_PATH = '/app/.heroku/vendor/lib/libgdal.so'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
