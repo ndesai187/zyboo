@@ -120,7 +120,6 @@ USE_L10N = True
 USE_TZ = True
 
 GEOIP_PATH = BASE_DIR + '/geoip'
-
 GDAL_LIBRARY_PATH = '/.heroku/vendor/lib/libgdal.so'
 
 # Static files (CSS, JavaScript, Images)
