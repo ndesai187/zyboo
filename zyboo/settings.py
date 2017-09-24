@@ -123,6 +123,7 @@ GEOIP_PATH = BASE_DIR + '/geoip'
 
 
 GDAL_LIBRARY_PATH = '/app/.heroku/vendor/lib/libgdal.so'
+GEOS_LIBRARY_PATH = '/app/.heroku/vendor/lib/libgeos_c.so'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
