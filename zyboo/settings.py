@@ -119,15 +119,15 @@ USE_L10N = True
 
 USE_TZ = True
 
-GEOIP_PATH = BASE_DIR + '/geoip'
+# GEOIP_PATH = BASE_DIR + '/geoip'
 
 
 GDAL_LIBRARY_PATH = '/app/.heroku/vendor/lib/libgdal.so'
 GEOS_LIBRARY_PATH = '/app/.heroku/vendor/lib/libgeos_c.so'
 
-# GEOIP_PATH=os.environ['GEOIP_GEOLITE2_PATH']
-# GEOIP_CITY=os.environ['GEOIP_GEOLITE2_CITY_FILENAME']
-# GEOIP_COUNTRY=os.environ['GEOIP_GEOLITE2_COUNTRY_FILENAME']
+GEOIP_PATH=os.environ['GEOIP_GEOLITE2_PATH']
+GEOIP_CITY=os.environ['GEOIP_GEOLITE2_CITY_FILENAME']
+GEOIP_COUNTRY=os.environ['GEOIP_GEOLITE2_COUNTRY_FILENAME']
 
 # Copy libjasper since it's only available in heroku buildenv
 # cp /usr/lib/x86_64-linux-gnu/libjasper.so* "$BUILD_DIR/$TARGET_VENDOR_DIR/lib/."
