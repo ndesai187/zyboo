@@ -25,7 +25,7 @@ SECRET_KEY = 'w)6^gr(oa^je$p9l!@t+lw^9%0!s(11@*c6=)-uvb2&rmt473v'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['zyboo.herokuapp.com']
 
 
 # Application definition
@@ -124,6 +124,11 @@ GEOIP_PATH = BASE_DIR + '/geoip'
 
 GDAL_LIBRARY_PATH = '/app/.heroku/vendor/lib/libgdal.so'
 GEOS_LIBRARY_PATH = '/app/.heroku/vendor/lib/libgeos_c.so'
+
+# Copy libjasper since it's only available in heroku buildenv
+# cp /usr/lib/x86_64-linux-gnu/libjasper.so* "$BUILD_DIR/$TARGET_VENDOR_DIR/lib/."
+# cp /Users/nirav/IdeaProjects/zyboo/dependency-heroku/libjasper.so* "/app/.heroku/vendor/lib/."
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
