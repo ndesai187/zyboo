@@ -125,7 +125,7 @@ USE_TZ = True
 GDAL_LIBRARY_PATH = '/app/.heroku/vendor/lib/libgdal.so'
 GEOS_LIBRARY_PATH = '/app/.heroku/vendor/lib/libgeos_c.so'
 
-GEOIP_GEOLITE2_PATH = BASE_DIR + '/geoiptest'
+GEOIP_GEOLITE2_PATH = BASE_DIR + '/.geoip'
 GEOIP_GEOLITE2_CITY_FILENAME = 'GeoLite2-City.mmdb'
 GEOIP_GEOLITE2_COUNTRY_FILENAME = 'GeoLite2-Country.mmdb'
 
