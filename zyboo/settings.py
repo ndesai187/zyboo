@@ -124,7 +124,7 @@ USE_TZ = True
 
 GDAL_LIBRARY_PATH = '/app/.heroku/vendor/lib/libgdal.so'
 GEOS_LIBRARY_PATH = '/app/.heroku/vendor/lib/libgeos_c.so'
-GEOIP_LIBRARY_PATH = '/app/.heroku/python/lib/python3.6/site-packages/django/contrib/gis/geoip/libgeoip.pyo'
+# GEOIP_LIBRARY_PATH = '/app/.heroku/python/lib/python3.6/site-packages/django/contrib/gis/geoip/libgeoip.pyo'
 
 GEOIP_GEOLITE2_PATH = BASE_DIR + '/.geoip/share'
 GEOIP_GEOLITE2_CITY_FILENAME = 'GeoLite2-City.mmdb'
