@@ -13,8 +13,9 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+from django.conf.global_settings import DATABASES
 
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
@@ -26,7 +27,6 @@ SECRET_KEY = 'w)6^gr(oa^je$p9l!@t+lw^9%0!s(11@*c6=)-uvb2&rmt473v'
 DEBUG = True
 
 ALLOWED_HOSTS = ['zyboo.herokuapp.com']
-
 
 # Application definition
 
@@ -58,7 +58,7 @@ ROOT_URLCONF = 'zyboo.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['zyboo',],
+        'DIRS': ['zyboo', ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -73,18 +73,21 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'zyboo.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
+import dj_database_url
+db_from_env = dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(db_from_env)
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.contrib.gis.db.backends.postgis',
+# for local DB
+# DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.contrib.gis.db.backends.postgis',
 #        'NAME': 'zyboo',
 #        'USER': 'zyboouser',
 #        'PASSWORD': 'zyboouser',
-    }
- }
+#    }
+#  }
 
 
 # Password validation
@@ -104,7 +107,6 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
-
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
@@ -130,9 +132,9 @@ GEOIP_GEOLITE2_PATH = '/app/.geoip/share'
 GEOIP_GEOLITE2_CITY_FILENAME = 'GeoLite2-City.mmdb'
 GEOIP_GEOLITE2_COUNTRY_FILENAME = 'GeoLite2-Country.mmdb'
 
-GEOIP_PATH=os.environ['GEOIP_GEOLITE2_PATH']
-GEOIP_CITY=os.environ['GEOIP_GEOLITE2_CITY_FILENAME']
-GEOIP_COUNTRY=os.environ['GEOIP_GEOLITE2_COUNTRY_FILENAME']
+GEOIP_PATH = os.environ['GEOIP_GEOLITE2_PATH']
+GEOIP_CITY = os.environ['GEOIP_GEOLITE2_CITY_FILENAME']
+GEOIP_COUNTRY = os.environ['GEOIP_GEOLITE2_COUNTRY_FILENAME']
 
 # Copy libjasper since it's only available in heroku buildenv
 # cp /usr/lib/x86_64-linux-gnu/libjasper.so* "$BUILD_DIR/$TARGET_VENDOR_DIR/lib/."
