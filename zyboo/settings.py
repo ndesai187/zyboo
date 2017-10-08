@@ -77,6 +77,7 @@ WSGI_APPLICATION = 'zyboo.wsgi.application'
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 import dj_database_url
 DATABASES['default'] = dj_database_url.config(conn_max_age=500)
+DATABASES['default']['ENGINE'] = 'django.contrib.gis.db.backends.postgis'
 
 # for local DB
 # DATABASES = {
