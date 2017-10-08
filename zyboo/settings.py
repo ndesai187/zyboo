@@ -80,9 +80,9 @@ WSGI_APPLICATION = 'zyboo.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.contrib.gis.db.backends.postgis',
-        'NAME': 'zyboo',
-        'USER': 'zyboouser',
-        'PASSWORD': 'zyboouser',
+#        'NAME': 'zyboo',
+#        'USER': 'zyboouser',
+#        'PASSWORD': 'zyboouser',
     }
  }
 
