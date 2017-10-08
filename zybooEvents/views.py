@@ -5,7 +5,7 @@ from zybooEvents.forms import LookupForm
 from zybooEvents.models import PubEvent, HappyPubs, RegisteredPubs, Events
 from django.utils import timezone
 from django.contrib.gis.geos import Point
-from django.contrib.gis.geoip2 import GeoIP2
+# from django.contrib.gis.geoip2 import GeoIP2
 from django.contrib.gis.db.models.functions import Distance
 from .serializers import PubEventSerializer, HappyPubsSerializer, \
     EventSerializer, RegPubsSerializer, TestSerializer
@@ -104,11 +104,11 @@ class GetQueryParam(views.APIView):
             ip = request.META.get('REMOTE_ADDR')
         return ip
 
-    def get_country(self,request):
-        g = GeoIP2()
-        country_code = g.country_code(self.get_client_ip(request))
-        lat, long = g.lat_lon('google.com')
-        return ">>country code is : " + country_code + " >>latitude is : " + str(lat) + " >>longitude is : " + str(long)
+    # def get_country(self,request):
+        # g = GeoIP2()
+        # country_code = g.country_code(self.get_client_ip(request))
+        # lat, long = g.lat_lon('google.com')
+        # return ">>country code is : " + country_code + " >>latitude is : " + str(lat) + " >>longitude is : " + str(long)
 
     def get(self, request):
         lat = request.GET.get('lat')
