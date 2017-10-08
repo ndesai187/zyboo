@@ -77,14 +77,14 @@ WSGI_APPLICATION = 'zyboo.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.contrib.gis.db.backends.postgis',
-        'NAME': 'zyboo',
-        'USER': 'zyboouser',
-        'PASSWORD': 'zyboouser',
-    }
-}
+# DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.contrib.gis.db.backends.postgis',
+#        'NAME': 'zyboo',
+#        'USER': 'zyboouser',
+#        'PASSWORD': 'zyboouser',
+#    }
+# }
 
 
 # Password validation
@@ -126,7 +126,7 @@ GDAL_LIBRARY_PATH = '/app/.heroku/vendor/lib/libgdal.so'
 GEOS_LIBRARY_PATH = '/app/.heroku/vendor/lib/libgeos_c.so'
 # GEOIP_LIBRARY_PATH = '/app/.heroku/python/lib/python3.6/site-packages/django/contrib/gis/geoip/libgeoip.pyo'
 
-GEOIP_GEOLITE2_PATH = '/app/.heroku/vendor/share'
+GEOIP_GEOLITE2_PATH = '/app/.geoip/share'
 GEOIP_GEOLITE2_CITY_FILENAME = 'GeoLite2-City.mmdb'
 GEOIP_GEOLITE2_COUNTRY_FILENAME = 'GeoLite2-Country.mmdb'
 
