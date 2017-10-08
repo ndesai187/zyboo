@@ -128,13 +128,14 @@ GDAL_LIBRARY_PATH = '/app/.heroku/vendor/lib/libgdal.so'
 GEOS_LIBRARY_PATH = '/app/.heroku/vendor/lib/libgeos_c.so'
 # GEOIP_LIBRARY_PATH = '/app/.heroku/python/lib/python3.6/site-packages/django/contrib/gis/geoip/libgeoip.pyo'
 
-GEOIP_GEOLITE2_PATH = '/app/.geoip/share'
-GEOIP_GEOLITE2_CITY_FILENAME = 'GeoLite2-City.mmdb'
-GEOIP_GEOLITE2_COUNTRY_FILENAME = 'GeoLite2-Country.mmdb'
+GEOIP_PATH = '/app/geoip_data/'
+#GEOIP_GEOLITE2_PATH = '/app/.geoip/share'
+#GEOIP_GEOLITE2_CITY_FILENAME = 'GeoLite2-City.mmdb'
+#GEOIP_GEOLITE2_COUNTRY_FILENAME = 'GeoLite2-Country.mmdb'
 
-GEOIP_PATH = os.environ['GEOIP_GEOLITE2_PATH']
-GEOIP_CITY = os.environ['GEOIP_GEOLITE2_CITY_FILENAME']
-GEOIP_COUNTRY = os.environ['GEOIP_GEOLITE2_COUNTRY_FILENAME']
+#GEOIP_PATH = os.environ['GEOIP_GEOLITE2_PATH']
+#GEOIP_CITY = os.environ['GEOIP_GEOLITE2_CITY_FILENAME']
+#GEOIP_COUNTRY = os.environ['GEOIP_GEOLITE2_COUNTRY_FILENAME']
 
 # Copy libjasper since it's only available in heroku buildenv
 # cp /usr/lib/x86_64-linux-gnu/libjasper.so* "$BUILD_DIR/$TARGET_VENDOR_DIR/lib/."
